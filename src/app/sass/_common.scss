@@ -1,0 +1,13 @@
+@mixin css3($property, $value) {
+     @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+          #{$prefix}#{$property}: $value;
+     }
+}
+
+@mixin fixed() {
+	position:fixed;
+    width:100%;
+    height:100%;
+    left: 0;
+    top: 0;
+}

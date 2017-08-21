@@ -1,0 +1,82 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "Address Book"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css",
+        "../node_modules/onsenui/css/onsen-css-components.css",
+        "../node_modules/onsenui/css/onsenui.css",
+        "css-static/libs/assets/animate.css/animate.css",
+        "css-static/libs/assets/font-awesome/css/font-awesome.css",
+        "css-static/libs/jquery/waves/dist/waves.css",
+        "css-static/styles/material-design-icons.css",
+        "css-static/libs/jquery/bootstrap/dist/css/bootstrap.css",
+        "css-static/styles/font.css",
+        "css-static/styles/app.css"
+      ],
+      "scripts": [
+        "../node_modules/onsenui/js/onsenui.js",
+        "scripts/jquery.js",
+        "scripts/bootstrap.js",
+        "scripts/waves.js",
+        "scripts/footable.all.min.js",
+        "scripts/ui-load.js",
+        "scripts/ui-jp.config.js",
+        "scripts/ui-nav.js",
+        "scripts/ui-toggle.js",
+        "scripts/ui-form.js",
+        "scripts/ui-waves.js",
+        "scripts/ui-client.js",
+        "scripts/ui-modal.js",
+        "scripts/ui-jp.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {
+    }
+  }
+}

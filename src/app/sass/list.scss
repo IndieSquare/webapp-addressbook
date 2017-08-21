@@ -1,0 +1,48 @@
+@import "common";
+
+.subscreen {
+	z-index: 5;
+}
+
+.box-row {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-bottom: 90px;
+}
+
+.filter {
+    @include fixed();
+    @include css3(opacity, 0.9);
+    filter:alpha(opacity=90);
+    background:#fff;
+}
+
+.inputform {
+	@include fixed();
+    z-index:4;
+}
+
+.history-content {
+	@include fixed();
+	top: 50px !important;
+    z-index:5;
+}
+
+.width-half {
+	width: 49%;
+}
+
+#searchbutton {
+	margin-right: 70px !important;
+}
+
+#fromHisoty {
+	margin-top: 10px;
+	text-align: center;
+}
+
+#addressdata-username {
+	font-size: larger;
+	font-weight: bold;
+}

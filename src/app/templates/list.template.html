@@ -1,0 +1,180 @@
+<div [hidden]="!isShowWelcome">
+  <div class="panel panel-card">
+    <div class="p">
+      <h3>Add it!</h3>
+      <p>
+        The list seems to be empty...<br />Let's add it by touching the plus (+) button at the bottom right.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="box-row">
+    <div class="box-cell">
+          <div class="row">
+
+<div class="col-md-6">
+  <div class="md-list md-whiteframe-z0 bg-white m-b">
+    <div class="content-list"></div>
+  </div>
+</div>
+
+	</div>
+  </div>
+</div>
+
+<div class="subscreen" [hidden]="!isShowAddForm">
+	<div class="filter" [ngStyle]="(isShowAddForm)? {'z-index':4}: {'z-index':1}"></div>
+	<div class="inputform">
+		<div class="center-block w-xxl w-auto-xs p-v-md">
+		    <div class="navbar">
+		      <div class="navbar-brand m-t-lg text-center">
+		        <span class="m-l inline">Add user</span>
+		      </div>
+		    </div>
+	
+		    <div class="p-lg panel md-whiteframe-z1 text-color m">
+		      <div class="m-b text-sm">
+		        Input here
+		      </div>
+		      
+		      <form (ngSubmit)="addDoButton()" #addForm="ngForm">
+			        <div class="md-form-group">
+			          <input type="text" class="md-input form-control" name="name" [(ngModel)]="addform.name" required>
+			          <label>Name</label>
+			        </div>
+			        <div class="md-form-group">
+			          <input type="text" class="md-input form-control" name="address" [(ngModel)]="addform.address" required>
+			          <label>Address</label>
+			          <div id="fromHisoty">
+					  	<span (click)="chooseFromHistoryButton();" class="badge bg-info pos-rlt m-r-xs"><b class="arrow top b-info pull-in"></b>Choose from History</span>
+			          </div>
+			        </div>
+			        <button type="submit" id="addDoButton" md-ink-ripple class="md-btn md-raised green btn-block p-h-md" [disabled]="!addForm.form.valid">Add</button>
+		      </form>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div class="subscreen" [hidden]="!isShowHistoryList">
+	<div class="filter" [ngStyle]="(isShowHistoryList)? {'z-index':5}: {'z-index':1}"></div>
+	<div class="history-content">
+		<div class="box-row">
+	        <div class="box-cell">
+		          <div class="row">
+		
+		<div class="md-list md-whiteframe-z0 bg-white m-b">
+		    <div class="panel panel-card">
+		        <div class="p">
+		          <h3>History</h3>
+		          <p>This is addresses in your history.</p>
+		        </div>
+		    </div>
+	        <div class="history-content-list"></div>
+	      </div>
+	    
+	    	</div>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+<div class="subscreen" [hidden]="!isShowSearchForm">
+	<div class="filter" [ngStyle]="(isShowSearchForm)? {'z-index':4}: {'z-index':1}"></div>
+	<div class="inputform">
+		<div class="center-block w-xxl w-auto-xs p-v-md">
+		    <div class="navbar">
+		      <div class="navbar-brand m-t-lg text-center">
+		        <span class="m-l inline">Search</span>
+		      </div>
+		    </div>
+	
+		    <div class="p-lg panel md-whiteframe-z1 text-color m">
+		      <div class="m-b text-sm">
+		        Input here
+		      </div>
+		      <form (ngSubmit)="searchDoButton()" #searchForm="ngForm">
+		        <div class="md-form-group">
+		          <input type="text" class="md-input form-control" name="searchword" [(ngModel)]="searchWord" required />
+		          <label>Word</label>
+		        </div>
+		        <button md-ink-ripple class="md-btn md-raised green btn-block p-h-md" [disabled]="!searchForm.form.valid">Search</button>
+		      </form>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<button id="addbutton" (click)="addbutton();" class="md-btn md-fab md-fab-bottom-right pos-fix blue" [ngStyle]="(isShowSearchForm)? {'z-index':1}: {'z-index':4}">
+	<i id="nav-button-icon" [ngClass]="(isShowAddForm)? 'fa fa-close i-16': 'fa fa-plus i-16'"></i>
+</button>
+<div [hidden]="!isShowSearchButton">
+	<button id="searchbutton" (click)="searchbutton();" [ngClass]="(isSearchApply)? 'md-btn md-fab md-fab-bottom-right pos-fix green': 'md-btn md-fab md-fab-bottom-right pos-fix blue'" [ngStyle]="(isShowAddForm)? {'z-index':1}: {'z-index':4}">
+		<i id="search-button-icon" [ngClass]="(isShowSearchForm || isSearchApply)? 'fa fa-close i-16': 'fa fa-search i-16'"></i>
+	</button>
+</div>
+<div class="subscreen" [hidden]="!isShowAddressData">
+	<div class="filter" [ngStyle]="(isShowAddressData)? {'z-index':4}: {'z-index':1}"></div>
+	<div class="inputform">
+		<div class="center-block w-xxl w-auto-xs p-v-md">
+		    <div class="navbar">
+		      <div class="navbar-brand m-t-lg text-center">
+		        <span class="m-l inline">Address data</span>
+		      </div>
+		    </div>
+	
+		    <div class="p-lg panel md-whiteframe-z1 text-color m">
+		      <div (click)="editname();" class="m-b text-sm">
+		        <span id="addressdata-username">{{selectedUser.name}}</span><i class="pull-right up"><i class="icon mdi-editor-mode-edit i-20"></i></i>
+		        <div id="addressdata-useraddress">{{selectedUser.address}}</div>
+		      </div>
+		      <form (ngSubmit)="transitionDoButton()" #transitionForm="ngForm" novalidate>
+		        <div class="form-group">
+			      <label class="col-sm-2 control-label">Select token</label>
+			      <div class="col-sm-10">
+			        <select id="tokenlist" class="form-control">
+				        <option>BTC</option>
+				        <option>XCP</option>
+			        </select>
+			      </div>
+			    </div>
+			    <button type="button" md-ink-ripple (click)="transitionCancelButton();" class="md-btn md-raised blue p-h-md width-half">Cancel</button>
+		        <button type="submit" md-ink-ripple class="md-btn md-raised green p-h-md width-half">Go</button>
+		      </form>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div class="subscreen" [hidden]="!isShowEditForm">
+	<div class="filter" [ngStyle]="(isShowEditForm)? {'z-index':4}: {'z-index':1}"></div>
+	<div class="inputform">
+		<div class="center-block w-xxl w-auto-xs p-v-md">
+		    <div class="navbar">
+		      <div class="navbar-brand m-t-lg text-center">
+		        <span class="m-l inline">Edit Name</span>
+		      </div>
+		    </div>
+	
+		    <div class="p-lg panel md-whiteframe-z1 text-color m">
+		      <div class="m-b text-sm">
+		        Input here
+		      </div>
+		      
+		      <form (ngSubmit)="editDoButton()" #editForm="ngForm">
+		        <div class="md-form-group">
+		          <input type="text" class="md-input form-control" name="editname" [(ngModel)]="editform.name" required />
+		          <label>Name</label>
+		        </div>
+		        <button type="button" md-ink-ripple (click)="editCancelButton();" class="md-btn md-raised blue p-h-md width-half">Cancel</button>
+		        <button type="submit" md-ink-ripple class="md-btn md-raised green p-h-md width-half" [disabled]="!editForm.form.valid">Apply</button>
+		      </form>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div class="loader" [hidden]="!isShowGlobalLoading">
+  <ons-progress-circular indeterminate></ons-progress-circular>
+</div>
